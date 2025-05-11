@@ -1,0 +1,35 @@
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Generated files
+/bin/
+/build/
+/out/
+
+# Log files
+*.log
+
+# IDE-specific files (examples)
+.idea/               # IntelliJ IDEA
+.vscode/             # VS Code
+*.iml                # IntelliJ IDEA module files
+*.ipr                # IntelliJ IDEA project files
+*.iws                # IntelliJ IDEA workspace files
+.project             # Eclipse
+.classpath           # Eclipse
+.settings/           # Eclipse
+
+# Operating System files
+.DS_Store            # macOS
+Thumbs.db            # Windows
+
+# Maven/Gradle build directories
+/target/             # Maven
+/build/              # Gradle (already included above, but good to be specific)
+.gradle/             # Gradle
+
