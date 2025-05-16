@@ -8,6 +8,7 @@ public class Volunteer {
     private int _id;
     private String _name;
     private List<Preference> _preferences;
+    private Service _assignedService;
     private static int _numberOfVolunteers = 0;
 
     public Volunteer() {
@@ -28,6 +29,10 @@ public class Volunteer {
 
     public List<Preference> getPreferedServices() {
         return _preferences;
+    }
+
+    public Service getAssignedService() {
+        return this._assignedService;
     }
 
     public void addPreference(Service service, int rank) {
@@ -68,5 +73,9 @@ public class Volunteer {
                 }
             }
         }
+    }
+
+    public void setAssignedService(Service service) {
+        this._assignedService = service;
     }
 }

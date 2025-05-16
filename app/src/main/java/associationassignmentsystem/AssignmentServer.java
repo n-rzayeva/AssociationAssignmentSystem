@@ -90,6 +90,12 @@ public class AssignmentServer {
         this.assignmentEngine.setVolunteers(volunteerManager.getVolunteers()); // Update the volunteers in the engine.
         List<Integer> results = this.assignmentEngine.runGeneticAlgorithm();
         assignmentManager.setBestAssignmentResult(results);
+
+        for (int i = 0; i < results.size(); i++) {
+            Service assignedService = services.get(results.get(i));
+            volunteerManager.getVolunteers().get(i).setAssignedService(assignedService);
+        }
+
         System.out.println("Optimization finished.");
     }
 

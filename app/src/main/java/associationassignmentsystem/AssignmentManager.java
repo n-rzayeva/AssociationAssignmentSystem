@@ -48,25 +48,28 @@ public class AssignmentManager {
 
     public synchronized List<JSONObject> getDetailedAssignments() {
         List<JSONObject> detailedAssignments = new ArrayList<>();
+
         for (Service service : services) {
             JSONObject serviceData = new JSONObject();
             serviceData.put("serviceName", service.getName());
             serviceData.put("capacity", service.getCapacity());
 
             JSONArray assignedVolunteers = new JSONArray();
-            if (bestAssignmentResult != null) {
-                for (int i = 0; i < bestAssignmentResult.size(); i++) {
-                    int assignedServiceIndex = bestAssignmentResult.get(i);
-                    if (assignedServiceIndex == services.indexOf(service)) {
-                        Volunteer volunteer = volunteers.get(i);
-                        Preference pref = volunteer.getPreferenceForService(service);
-                        JSONObject volunteerData = new JSONObject();
-                        volunteerData.put("volunteerName", volunteer.getName());
-                        volunteerData.put("cost", (pref != null) ? pref.getRank() : -1);
-                        assignedVolunteers.put(volunteerData);
-                    }
+
+            for (Volunteer volunteer : volunteers) {
+                Service assignedService = volunteer.getAssignedService();
+                if (assignedService != null && assignedService.equals(service)) {
+                    Preference pref = volunteer.getPreferenceForService(service);
+                    int cost = (pref != null) ? (pref.getRank() - 1) * (pref.getRank() - 1) : -1;
+
+                    JSONObject volunteerData = new JSONObject();
+                    volunteerData.put("volunteerName", volunteer.getName());
+                    volunteerData.put("cost", cost);
+
+                    assignedVolunteers.put(volunteerData);
                 }
             }
+
             serviceData.put("assignedVolunteers", assignedVolunteers);
             detailedAssignments.add(serviceData);
         }

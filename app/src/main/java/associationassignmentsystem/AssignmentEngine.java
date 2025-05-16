@@ -140,7 +140,7 @@ public class AssignmentEngine {
             }
         } else {
             for(int i=0; i< parent1.size(); i++){
-                 child.setServiceAssignment(i, parent1.getServiceAssignment(i));
+                child.setServiceAssignment(i, parent1.getServiceAssignment(i));
             }
         }
         return child;

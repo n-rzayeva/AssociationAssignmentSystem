@@ -22,6 +22,8 @@ public class Service {
         Random random = new Random();
         this._capacity = random.nextInt(6) + 1;
 
+        System.out.printf("The service: %s is assigned with the capacity of: %d\n", this._name, this._capacity);
+
         this._assignedVolunteers = new ArrayList<>();
     }
 
