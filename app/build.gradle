@@ -23,6 +23,16 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+
+    implementation 'org.json:json:20250107'
+
+    // JavaFX modules
+    def javafxVersion = '21.0.1'
+    def osName = org.gradle.internal.os.OperatingSystem.current()
+
+    ['base', 'graphics', 'controls', 'fxml'].each { module ->
+        implementation "org.openjfx:javafx-${module}:${javafxVersion}:${osName.familyName}"
+    }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -34,7 +44,25 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'associationassignmentsystem.App'
+    mainClass = 'associationassignmentsystem.AssignmentServer'
+}
+
+tasks.register('runClient', JavaExec) {
+    group = 'application'
+    description = 'Run the JavaFX Client GUI'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('associationassignmentsystem.GuiMain')
+    jvmArgs = [
+        '--module-path', classpath.asPath,
+        '--add-modules', 'javafx.controls,javafx.fxml'
+    ]
+}
+
+tasks.named('run') {
+    jvmArgs = [
+        '--module-path', classpath.asPath,
+        '--add-modules', 'javafx.controls,javafx.fxml'
+    ]
 }
 
 tasks.named('test') {

@@ -22,13 +22,4 @@ public class Preference {
     public int getRank() {
         return _rank;
     }
-
-    // You might want to add other methods later, for example,
-    // methods to compare preferences or check if two preferences are for the same service.
-
-    // Example: A method to get the cost factor for this preference if assigned (for the optimization algorithm)
-    public int getCostFactor() {
-        // (i-1)² if assigned to i-th preferred service
-        return (this._rank - 1) * (this._rank - 1);
-    }
 }

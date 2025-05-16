@@ -5,21 +5,21 @@ import java.util.List;
 
 public class Volunteer {
 
-    private String _volunteerNumber; // represents the id like #Vo03
+    private int _id;
     private String _name;
-    private static int _numberOfVolunteers = 0;
     private List<Preference> _preferences;
+    private static int _numberOfVolunteers = 0;
 
-    public Volunteer(String name) {
+    public Volunteer() {
         _numberOfVolunteers ++;
-        this._name = name;
-        this._volunteerNumber = "#Vo" + String.format("%02d", _numberOfVolunteers);
+        this._id = _numberOfVolunteers;
+        this._name = "#V" + String.format("%02d", this._id);
         this._preferences = new ArrayList<>();
     }
 
     // Getters
-    public String getVolunteerNumber() {
-        return _volunteerNumber;
+    public int getId() {
+        return _id;
     }
 
     public String getName() {
@@ -30,7 +30,6 @@ public class Volunteer {
         return _preferences;
     }
 
-    // Method to add a preference to the volunteer's list
     public void addPreference(Service service, int rank) {
         if (this._preferences.size() < 5) { 
             Preference newPreference = new Preference(service, rank);
@@ -41,7 +40,6 @@ public class Volunteer {
         }
     }
 
-    // You might also need a method to find a preference by service
     public Preference getPreferenceForService(Service service) {
         for (Preference preference : this._preferences) {
             Service preferredService = preference.getService();
@@ -53,9 +51,22 @@ public class Volunteer {
         return null;
     }
 
-    // Potentially more methods
-
-    // Consider overriding equals() and hashCode() in Volunteer if needed
-    // public boolean equals(Object o) { ... }
-    // public int hashCode() { ... }
+    public void setPreferencesFromIds(List<Integer> preferredServiceIds, List<Service> allServices) {
+        this._preferences.clear(); // Clear any existing preferences
+        if (preferredServiceIds != null) {
+            for (int rank = 0; rank < Math.min(preferredServiceIds.size(), 5); rank++) {
+                int serviceId = preferredServiceIds.get(rank);
+                // Find the Service object by its ID
+                Service service = allServices.stream()
+                        .filter(s -> s.getId() == serviceId)
+                        .findFirst()
+                        .orElse(null);
+                if (service != null) {
+                    this._preferences.add(new Preference(service, rank + 1)); // Rank is 1-based
+                } else {
+                    System.out.println("Warning: Service ID " + serviceId + " not found for volunteer " + this._name);
+                }
+            }
+        }
+    }
 }

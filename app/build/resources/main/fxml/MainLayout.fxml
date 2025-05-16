@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="associationassignmentsystem.controllers.MainController">
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #80666B;" alignment="TOP_LEFT" prefWidth="200">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label fx:id="volunteerLabel" text="Volunteer: #V01" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+
+            <Button text="Your Preferences" onAction="#handlePreferencesView" prefWidth="180" />
+            <Button text="General Assignments View" onAction="#handleGeneralView" prefWidth="180" />
+            <Button text="Detailed Assignments View" onAction="#handleDetailedView" prefWidth="180" />
+
+            <VBox VBox.vgrow="ALWAYS" /> <!-- Spacer -->
+
+            <Label text="Your Assigned Service:" style="-fx-text-fill: lightgray;" />
+            <Label fx:id="assignedServiceLabel" text="None" style="-fx-text-fill: white;" />
+
+            <Button text="↻" onAction="#handleRefresh" prefWidth="40" />
+
+            <Label text="© 2025" style="-fx-text-fill: lightgray;" />
+        </VBox>
+    </left>
+
+    <!-- Main View Area -->
+    <center>
+        <StackPane fx:id="viewContainer">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </StackPane>
+    </center>
+</BorderPane>

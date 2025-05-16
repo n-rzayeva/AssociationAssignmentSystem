@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="associationassignmentsystem.controllers.PreferencesController"
+      spacing="15">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Select Your Preferred Services" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10">
+        <Label text="1st Preference:" />
+        <ComboBox fx:id="pref1Combo" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="2nd Preference:" />
+        <ComboBox fx:id="pref2Combo" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="3rd Preference:" />
+        <ComboBox fx:id="pref3Combo" prefWidth="200"/>
+    </HBox>
+
+    <Button text="Submit Preferences" onAction="#submitPreferences" prefWidth="200"/>
+
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: green;"/>
+</VBox>
