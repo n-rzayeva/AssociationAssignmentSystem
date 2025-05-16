@@ -31,7 +31,7 @@ The application simulates **multiple clients** connecting to a **central server*
 ### Run the Server
 
 ```bash
-./gradlew runServer
+./gradlew run
 ```
 
 ### Run a Client (in a new terminal)
